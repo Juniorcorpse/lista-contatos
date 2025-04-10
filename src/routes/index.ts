@@ -1,8 +1,7 @@
-import { isUtf8 } from "buffer";
 import { Router } from "express";
-import { readFile, writeFile } from "fs/promises";
+import { createContact, deleteContact, getContacts } from "../services/contact";
 
-const dataSource = './data/list.txt';
+
 const router = Router();
 
 router.post('/contato', async (req, res) => {
@@ -11,27 +10,14 @@ router.post('/contato', async (req, res) => {
          res.status(409).json({error:'Nome precisa ter pelomenos 2 caracteres.'});
          return;
     }
-
     //processamento dos dados
-    let list: string[] = [];
-    try {
-        const data = await readFile(dataSource, {encoding:'utf8'});
-        list = data.split('\n');
-
-    } catch (error) {}
-
-    list.push(name);
-    await writeFile(dataSource, list.join('\n'));
+    await createContact(name);
 
     res.status(201).json({contato:name})
 });
 
 router.get('/contatos', async (req, res) =>{
-    let list: string[] = [];
-    try {
-        const data = await readFile(dataSource, {encoding:'utf8'});
-        list = data.split('\n');
-    } catch (error) {}
+    let list = await getContacts();
     res.json({contatos: list});
 });
 
@@ -41,14 +27,7 @@ router.delete('/contato', async (req, res) =>{
        res.status(409).json({erro: "Precisa mandar um nome"});
        return;
     }
-    let list: string[] = [];
-    try {
-        const data = await readFile(dataSource, {encoding:'utf8'});
-        list = data.split('\n');
-    } catch (error) {}
-
-    list = list.filter( item => item.toLowerCase() !== (name as string).toLowerCase());
-    await writeFile(dataSource, list.join('\n'));
+    await deleteContact(name as string);
     res.json({contato:name});
 });
 
