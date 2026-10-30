@@ -19,13 +19,15 @@ export const localStrategy = new LocalStrategy({
     console.log('password:', password);
 
     const user = await findUserByEmailAndPass(email, password);
-    if (user) {
-        const token = createUserToken(user);
-        const response: LocalStrategyResponse = {auth: {token}, user};
-        return done(null, response);
-    }else {
-        return done(null, false);
+    if (!user) {
+        return done(null, false);        
     }
+    const token = createUserToken(user);
+    const response: LocalStrategyResponse = {
+        auth: {token},
+        user
+    };
+    return done(null, response);
 });
 
 //2ª - Criar o middleware para interferir na na rota desejada.
