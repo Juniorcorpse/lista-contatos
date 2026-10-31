@@ -11,12 +11,17 @@
   "dependencies": {
     "express": "^4.21.2",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
     "passport": "^0.7.0",
+    "passport-http-bearer": "^1.0.1",
+    "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/node": "^22.13.11",
+    "@types/passport-http-bearer": "^1.0.42",
+    "@types/passport-jwt": "^4.0.1",
     "@types/passport-local": "^1.0.38",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"

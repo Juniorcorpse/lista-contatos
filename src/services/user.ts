@@ -17,3 +17,16 @@ export const createUserToken = (user: User) => {
     //gerar token JWT
     return '1234';
 }
+
+export const findUserByToken = async (token: string) => {
+    //consultar DB
+    if(token === '1234') {
+        const user: User = {
+            id: 1,
+            name: 'Admin',
+            email: 'admin@exemplo.com'
+        };
+        return user;       
+    }
+    return null;
+}

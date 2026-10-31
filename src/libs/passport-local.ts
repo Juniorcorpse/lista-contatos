@@ -30,7 +30,7 @@ export const localStrategy = new LocalStrategy({
     return done(null, response);
 });
 
-//2ª - Criar o middleware para interferir na na rota desejada.
+//2ª - Criar o middleware para interferir na rota desejada.
 export const localStrategyAuth:RequestHandler = (req, res, next) => {
    const authReques = passport.authenticate('local',
     (err: any, response: LocalStrategyResponse | false) => {
