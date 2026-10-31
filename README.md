@@ -12,8 +12,8 @@ npm install dotenv
 ```
 - Depois, coloque esta linha no início de `server.ts`, antes dos outros imports:
 
-```sh
-npm install dotenv
+```js
+import "dotenv/config";
 ```
 - Ou ajustar o script dev em package.json para carregar o arquivo:
 ```sh
@@ -29,7 +29,7 @@ passport.use(localStrategy);
 ```
 
 - Inicializer o `passport`.
-```sh
+```js
 server.use(passport.initialize());
 ```
 
@@ -70,6 +70,6 @@ JWT_KEY="mySecretKey"
 ```
 ### Nas configurações de `server.ts`.
 - Adicionar a estrategia no `passport`.
-```sh
+```js
 passport.use(jwtStrategy);
 ```
