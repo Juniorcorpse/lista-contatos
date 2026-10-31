@@ -7,13 +7,24 @@ npm i passport
 ```sh
 npm i @types/passport-local
 ```
+```sh
+npm install dotenv
+```
+- Depois, coloque esta linha no início de `server.ts`, antes dos outros imports:
 
+```sh
+npm install dotenv
+```
+- Ou ajustar o script dev em package.json para carregar o arquivo:
+```sh
+"dev": "node --env-file=.env --import=tsx --watch src/server.ts"
+```
 
 - Criar uma `localStrategy`.
 
 ### Nas configurações de `server.ts`.
 - Adicionar a estrategia no `passport`.
-```sh
+```js
 passport.use(localStrategy);
 ```
 

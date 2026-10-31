@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import { User } from "../types/user";
 
 export const findUserByEmailAndPass = (email: string, password : string) => {
@@ -14,8 +15,18 @@ export const findUserByEmailAndPass = (email: string, password : string) => {
 }
 
 export const createUserToken = (user: User) => {
-    //gerar token JWT
+    //gerar token
     return '1234';
+}
+
+export const createUserJWT = (user: User) => {
+    //gerar token JWT
+    const payload ={
+        id: user.id
+    }
+    return jwt.sign(payload, process.env.JWT_KEY as string, {
+        expiresIn: '1 minute'
+    })
 }
 
 export const findUserByToken = async (token: string) => {
