@@ -24,14 +24,28 @@ export const createUserJWT = (user: User) => {
     const payload ={
         id: user.id
     }
-    return jwt.sign(payload, process.env.JWT_KEY as string, {
-        expiresIn: '1 minute'
+    return jwt.sign(payload, process.env.JWT_KEY as string,
+        {
+        expiresIn: '1 minute'//Normalmente não usamos a option: {expiresIn}, nesse caso foi para testes
     })
 }
 
 export const findUserByToken = async (token: string) => {
     //consultar DB
     if(token === '1234') {
+        const user: User = {
+            id: 1,
+            name: 'Admin',
+            email: 'admin@exemplo.com'
+        };
+        return user;       
+    }
+    return null;
+}
+
+export const findUserById = async (id: number) => {
+    //consultar DB
+    if(id === 1) {
         const user: User = {
             id: 1,
             name: 'Admin',

@@ -3,6 +3,7 @@ import { ContactsController, delContactController, newContactController } from "
 import { privateRequest } from "../middlewares/auth";
 import { localStrategyAuth } from "../libs/passport-local";
 import { bearerStrategyAuth } from "../libs/passport-bearer";
+import { jwtStrategyAuth } from "../libs/passport-jwt";
 
 const router = Router();
 
@@ -21,8 +22,8 @@ router.get('/private', bearerStrategyAuth, (req, res) => {
     res.json({message: 'Acesso permitido!'});
 });
 
-router.get('/privatejwt', (req, res) => {
-    res.json({messageJWT: 'Acesso permitido!'});
+router.get('/privatejwt', jwtStrategyAuth, (req, res) => {
+    res.json({messageJWT: 'Acesso permitido JWT!'});
 });
 
 export default router;

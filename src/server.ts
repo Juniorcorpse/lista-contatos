@@ -6,6 +6,7 @@ import router from "./routes";
 import { localStrategy } from "./libs/passport-local";
 import passport from "passport";
 import { bearerStrategy } from "./libs/passport-bearer";
+import { jwtStrategy } from "./libs/passport-jwt";
 
 const server = express();
 server.use(helmet());
@@ -18,6 +19,8 @@ server.use(express.static(path.join(__dirname, '../public')));
 passport.use(localStrategy);
 // strategy para verificar o token
 passport.use(bearerStrategy);
+// strategy usando JWT
+passport.use(jwtStrategy);
 
 server.use(passport.initialize());
 
